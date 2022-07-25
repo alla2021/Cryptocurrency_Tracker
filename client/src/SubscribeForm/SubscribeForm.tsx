@@ -10,7 +10,6 @@ import {useState} from "react";
 
  const SubscribeForm = () => {
      const [email, setEmail] =useState('')
-     console.log('add xxxxxxemail', email)
 
      async function subscriberUser(e: React.FormEvent<HTMLFormElement>) {
          e.preventDefault();
@@ -28,16 +27,6 @@ import {useState} from "react";
          const data = await response.json();
          console.log(data);
      }
-
-
-
-     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-         e.preventDefault();
-         let newEmail = {
-         email,
-         };
-         console.log('add email',newEmail)
-     };
 
     return(
             <Grid container component="main" sx={{ height: '100vh' }}>

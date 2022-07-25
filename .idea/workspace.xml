@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddd459e8-1f05-49ed-915e-e13909bbb6c0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/SubscribeForm/SubscribeForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/SubscribeForm/SubscribeForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +57,7 @@
       <updated>1658605942019</updated>
       <workItem from="1658605947298" duration="478000" />
       <workItem from="1658665454754" duration="7633000" />
-      <workItem from="1658758397592" duration="8810000" />
+      <workItem from="1658758397592" duration="11610000" />
     </task>
     <servers />
   </component>

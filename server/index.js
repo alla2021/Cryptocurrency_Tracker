@@ -1,9 +1,11 @@
+const URL_CRYP='https://coinmarketcap.com/'
+const API_KEY='1B04F48C-CD82-47F1-A64E-EEB95286BDE7'
 //-----------------------save fs-----------------------------------
 var fs = require('fs');
 const data = 'db.json'
 
 function getDatabase() {
-    const database = fs.readFileSync('data.json')
+    const database = fs.readFileSync('db.json')
     const data = JSON.parse(database)
     console.log(data, 'data')
     return data
