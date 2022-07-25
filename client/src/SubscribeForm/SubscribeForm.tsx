@@ -10,6 +10,26 @@ import {useState} from "react";
 
  const SubscribeForm = () => {
      const [email, setEmail] =useState('')
+     console.log('add xxxxxxemail', email)
+
+     async function subscriberUser(e: React.FormEvent<HTMLFormElement>) {
+         e.preventDefault();
+
+         const response = await fetch("http://localhost:5000/subscribe", {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json",
+             },
+             body: JSON.stringify({
+                 email,
+             }),
+         });
+
+         const data = await response.json();
+         console.log(data);
+     }
+
+
 
      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
          e.preventDefault();
@@ -41,7 +61,7 @@ import {useState} from "react";
                         <Typography component="h1" variant="h5">
                             Sign an email to receive information on changing the course
                         </Typography>
-                        <Box component="form" noValidate  sx={{ mt: 1 }}  onSubmit={handleSubmit}>
+                        <Box component="form" noValidate  sx={{ mt: 1 }}  onSubmit={subscriberUser}>
                             <TextField
                                 margin="normal"
                                 required
@@ -51,6 +71,7 @@ import {useState} from "react";
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
 
