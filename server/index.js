@@ -40,34 +40,21 @@ app.post('/subscribe', async (req, res) => {
     }
 })
 
+app.get('/rate',async (req,res)=>{
 
-// app.post('/api/register', async (req, res) => {
-//     console.log(req.body)
-//     try {
-//         const newPassword = await bcrypt.hash(req.body.password, 10)
-//         await User.create({
-//             firstName: req.body.firstName,
-//             lastName: req.body.lastName,
-//             email: req.body.email,
-//             password: newPassword,
-//         })
-//         res.json({ status: 'ok' })
-//     } catch (err) {
-//         res.json({ status: 'error', error: 'Duplicate email' })
-//     }
-// })
+})
 
-// app.get('/rate',async (req,res)=>{
-//     const dataCurrency = await axios.get(URL_CRYP)
-//     console.log(dataCurrency,'hhky')
-//     try{
-//         res.status(200).json({currency})
-//     }
-//     catch (e){
-//         res.status(401).json({currency:undefined})
-//     }
-//     return dataCurrency;
-// })
+async function reqCurrencyAPI () {
+    let currency = null;
+    const dataCurrency = await axios.get(URL_CRYP).then(res => {
+        currency = res.data[0].current_price
+    })
+        .catch(error => {
+            console.log(error);
+        });
+
+    return console.log(currency);
+}
 
 
 app.listen(PORT, () => {
