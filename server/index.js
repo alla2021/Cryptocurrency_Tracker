@@ -36,12 +36,18 @@ app.post('/subscribe', async (req, res) => {
         addNewEmailToDB(item)
         res.json({ status: 'OK. Email was added' })
     }  else {
-        test != true ? res.json({ status: 'error', error: 'Error. Invalid email' }) : res.json({ status: 'error', error: 'Error. Duplicate email' })
+        test != true ? res.status(401).json({ status: 'error', error: 'Error. Invalid email' }) : res.json({ status: 'error', error: 'Error. Duplicate email' })
     }
 })
 
 app.get('/rate',async (req,res)=>{
-
+    let btsCurrent = console.log(await reqCurrencyAPI (),'s33333ss');
+    try{
+        res.status(200).json({ status: 'OK.' })
+    }
+    catch (e){
+        res.status(401).json({status: 'error'})
+    }
 })
 
 async function reqCurrencyAPI () {
@@ -53,7 +59,7 @@ async function reqCurrencyAPI () {
             console.log(error);
         });
 
-    return console.log(currency);
+    return currency;
 }
 
 
