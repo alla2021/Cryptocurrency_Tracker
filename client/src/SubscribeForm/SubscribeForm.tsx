@@ -13,8 +13,7 @@ import {useState} from "react";
 
      async function subscriberUser(e: React.FormEvent<HTMLFormElement>) {
          e.preventDefault();
-
-         const response = await fetch("http://localhost:5000/subscribe", {
+         const res = await fetch("http://localhost:8080/subscribe", {
              method: "POST",
              headers: {
                  "Content-Type": "application/json",
@@ -23,8 +22,7 @@ import {useState} from "react";
                  email,
              }),
          });
-
-         const data = await response.json();
+         const data = await res.json();
          console.log(data);
      }
 

@@ -1,5 +1,3 @@
-const URL_CRYP='https://coinmarketcap.com/'
-const API_KEY='1B04F48C-CD82-47F1-A64E-EEB95286BDE7'
 //-----------------------save fs-----------------------------------
 var fs = require('fs');
 const data = 'db.json'
@@ -22,23 +20,54 @@ function checkEmail(email){
 
 //------------------server--------------------------------
 const express = require('express')
+const axios = require('axios');
 var cors = require('cors')
-const PORT = 5000;
-
+const PORT = 8080;
+const URL_CRYP ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=UAH&order=market_cap_desc&per_page=1&page=1&sparkline=false';
 const app = express();
 app.use(cors())
 app.use(express.json())
 
 app.post('/subscribe', async (req, res) => {
     const item = req.body
-    if(checkEmail(item.email) === undefined){
+    const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    const test = emailRegexp.test(item.email)
+    if(checkEmail(item.email) === undefined && test === true){
         addNewEmailToDB(item)
         res.json({ status: 'OK. Email was added' })
-    } else {
-        res.json({ status: 'error', error: 'Error. Duplicate email' })
+    }  else {
+        test != true ? res.json({ status: 'error', error: 'Error. Invalid email' }) : res.json({ status: 'error', error: 'Error. Duplicate email' })
     }
 })
 
+
+// app.post('/api/register', async (req, res) => {
+//     console.log(req.body)
+//     try {
+//         const newPassword = await bcrypt.hash(req.body.password, 10)
+//         await User.create({
+//             firstName: req.body.firstName,
+//             lastName: req.body.lastName,
+//             email: req.body.email,
+//             password: newPassword,
+//         })
+//         res.json({ status: 'ok' })
+//     } catch (err) {
+//         res.json({ status: 'error', error: 'Duplicate email' })
+//     }
+// })
+
+// app.get('/rate',async (req,res)=>{
+//     const dataCurrency = await axios.get(URL_CRYP)
+//     console.log(dataCurrency,'hhky')
+//     try{
+//         res.status(200).json({currency})
+//     }
+//     catch (e){
+//         res.status(401).json({currency:undefined})
+//     }
+//     return dataCurrency;
+// })
 
 
 app.listen(PORT, () => {
