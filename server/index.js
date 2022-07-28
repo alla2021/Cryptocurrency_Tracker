@@ -16,9 +16,9 @@ app.post('/subscribe', async (req, res) => {
     const test = emailRegexp.test(item.email)
     if(checkEmail(item.email) === undefined && test === true){
         addNewEmailToDB(item)
-        res.json({ status: 'OK. Email was added' })
+        res.status(200).send({ description: 'Email was added' })
     }  else {
-        test != true ? res.status(401).json({ status: 'error', error: 'Error. Invalid email' }) : res.json({ status: 'error', error: 'Error. Duplicate email' })
+        test != true ? res.status(409).send({ description: 'Error. Invalid email' }) : res.status(409).send({ description: 'Error. Duplicate email' })
     }
 })
 
@@ -27,13 +27,13 @@ app.get("/rate", async (req, res) => {
         let btsRate = await reqCurrencyBTC();
         res.status(200).send({ btc: `${btsRate}` });
     } catch (e) {
-        res.status(400).send({ status: "error", error: "Invalid status value" });
+        res.status(400).send({ description: "Invalid status value" });
     }
 });
 
 app.post("/sendEmails", async (req, res) =>{
     await sendEmailSubscriptions().catch(console.error);
-    res.status(200).json({ description: "Email was sent " });
+    res.status(200).send({ description: "Emails was sent " });
 });
 
 app.listen(PORT, () => {
